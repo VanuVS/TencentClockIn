@@ -5,8 +5,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 
 options = webdriver.ChromeOptions()
-options.add_argument("headless")
-options.add_argument("sandbox")
+#options.add_argument("headless") # 无头模式
+#options.add_argument("sandbox")
 driver = webdriver.Chrome('C:\Program Files\Google\Chrome\Application\chromedriver.exe',options=options)
 driver.get("https://docs.qq.com/desktop")  # 地址栏里输入健康打卡的网址
 driver.implicitly_wait(2)  # 设置隐式等待时间
