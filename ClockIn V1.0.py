@@ -25,12 +25,12 @@ current_time = time.strftime("%H%M%S", time.localtime())  # 当前时间作为�
 time.sleep(1)
 driver.switch_to.frame(driver.find_element_by_id('login_frame'))
 try:
-    driver.find_element_by_xpath('//*[@id="img_out_2708595115"]').click()
+    driver.find_element_by_xpath('//*[@id="img_out"]').click()
     print("快速登录成功")
 except:  # 非常用ip登录不可用 需要滑块验证
     driver.find_element_by_xpath('//*[@id="switcher_plogin"]').click()
-    driver.find_element_by_xpath('//*[@id="u"]').send_keys("1902333948")
-    driver.find_element_by_xpath('//*[@id="p"]').send_keys("MIKE010504")
+    driver.find_element_by_xpath('//*[@id="u"]').send_keys("") # 输入账号
+    driver.find_element_by_xpath('//*[@id="p"]').send_keys("") # 输入密码
     driver.find_element_by_xpath('//*[@id="login_button"]').click()
     print("账密登录成功")
 time.sleep(5)
@@ -61,7 +61,7 @@ def LocateDate():
     ActionChains(driver).key_down(Keys.CONTROL).send_keys("f").perform()  # 同时按下ctrl+f,打开搜索栏
     time.sleep(1)
     driver.find_element_by_xpath('//*[@id="search-panel-input"]').send_keys(str(date))
-    driver.find_element_by_xpath('//*[@id="search-panel-input"]').send_keys(str(date))
+    driver.find_element_by_xpath('//*[@id="search-panel-input"]').send_keys(str(date)) # 必须两次
     time.sleep(1)
     driver.execute_script("document.querySelector('body > div.dui-modal-mask.dui-modal-mask-visible > div > "
                           "div.dui-modal-close').click()")
@@ -74,7 +74,7 @@ def LocateDate():
 def LocatePerson(displacement):
     global textbox, flag, temperature
     flag = 0
-    temperature = round(random.uniform(36.2, 36.8), 1)
+    temperature = round(random.uniform(36.2, 36.8), 1) # 体温区间
     textbox = driver.find_element_by_id('alloy-simple-text-editor')
     for j in range(0, displacement):
         textbox.send_keys(Keys.ENTER)  # 对文字输入框输入Enter键进行下移操作
@@ -92,8 +92,8 @@ def LocatePerson(displacement):
 
 
 def main():
-    name = ["ysy", "ljw", "lcx", "qmj","NONE"]
-    displacement = [18, 35, 54, 76,0]
+    name = ["NONE"] # 输入姓名，保留"NONE"
+    displacement = [0] # 输入位移量，保留"0"
     for j in range(0, len(name)):
         if j == len(name)-1:
             textbox.send_keys(Keys.ENTER)
